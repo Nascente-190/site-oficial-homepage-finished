@@ -1,0 +1,50 @@
+/* src/App.css - CÓDIGO CORRIGIDO */
+
+#root {
+  /* CORREÇÃO: Removido max-width: 1280px para que o contêiner do Tailwind 
+     possa controlar a largura e centralização de forma flexível. */
+  
+  margin: 0 auto; /* Mantém a centralização básica */
+  
+  /* CORREÇÃO: Reduzido padding lateral para 1rem para evitar esmagamento em mobile */
+  padding: 0 1rem; 
+  
+  text-align: center;
+}
+
+/* O DESIGN DA LOGOMARCA FOI MANTIDO SEM ALTERAÇÕES, CONFORME SOLICITADO. */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

@@ -1,0 +1,13 @@
+/* navBar.css - para testar se está carregando */
+
+a {
+  color: gold !important;
+  transition: all 0.3s ease !important;
+}
+
+a:hover {
+  color: white !important;
+  text-shadow: 0 0 8px white !important;
+  transform: translateY(-3px);
+}
+
