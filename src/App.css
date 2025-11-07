@@ -1,14 +1,58 @@
-/* src/App.css - CÓDIGO CORRIGIDO */
+/* src/App.css - ATUALIZADO COM A FONTE 'Mile Heights' */
+
+/*
+  PASSO 1: Importação da fonte 'Mile Heights'
+  
+  IMPORTANTE: Eu presumi que você criou uma pasta 'fonts' dentro de 'src/assets'
+  e salvou os arquivos da fonte lá.
+  
+  Se o caminho for diferente (ex: '/public/fonts/MileHeights-Regular.ttf'),
+  por favor, AJUSTE O CAMINHO na 'url()' abaixo para corresponder
+  ao local onde você salvou os arquivos.
+*/
+@font-face {
+  font-family: 'Mile Heights';
+  src: url('/src/assets/fonts/MileHeights-Regular.ttf') format('truetype');
+  font-weight: normal; /* 400 */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Se você também baixou o arquivo Itálico:
+  (Senão, pode apagar este bloco)
+*/
+@font-face {
+  font-family: 'Mile Heights';
+  src: url('/src/assets/fonts/MileHeights-Italic.ttf') format('truetype');
+  font-weight: normal; /* 400 */
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Se você também baixou o arquivo Negrito:
+  (Senão, pode apagar este bloco)
+*/
+@font-face {
+  font-family: 'Mile Heights';
+  src: url('/src/assets/fonts/MileHeights-Bold.ttf') format('truetype');
+  font-weight: bold; /* 700 */
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* PASSO 2: Seu código original do App.css
+*/
 
 #root {
-  /* CORREÇÃO: Removido max-width: 1280px para que o contêiner do Tailwind 
+  /* CORREÇÃO: Removido max-width: 1280px para que o contêiner do Tailwind
      possa controlar a largura e centralização de forma flexível. */
-  
+
   margin: 0 auto; /* Mantém a centralização básica */
-  
+
   /* CORREÇÃO: Reduzido padding lateral para 1rem para evitar esmagamento em mobile */
-  padding: 0 1rem; 
-  
+  padding: 0 1rem;
+
   text-align: center;
 }
 

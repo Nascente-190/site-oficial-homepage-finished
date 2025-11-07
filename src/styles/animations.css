@@ -132,7 +132,8 @@
    ============================================================ */
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: translateY(0) translateX(0);
   }
@@ -143,7 +144,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -152,7 +154,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
   }
   50% {
@@ -161,11 +164,16 @@
 }
 
 @keyframes glow {
-  0%, 100% {
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5), 0 0 10px rgba(212, 175, 55, 0.3);
+  0%,
+  100% {
+    text-shadow:
+      0 0 5px rgba(212, 175, 55, 0.5),
+      0 0 10px rgba(212, 175, 55, 0.3);
   }
   50% {
-    text-shadow: 0 0 15px rgba(212, 175, 55, 1), 0 0 25px rgba(212, 175, 55, 0.6);
+    text-shadow:
+      0 0 15px rgba(212, 175, 55, 1),
+      0 0 25px rgba(212, 175, 55, 0.6);
   }
 }
 
@@ -192,7 +200,8 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -344,7 +353,7 @@
 
 .hover-glow:hover {
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-  border-color: #D4AF37;
+  border-color: #d4af37;
 }
 
 .hover-shine:hover {
@@ -356,21 +365,23 @@
    ============================================================ */
 
 .text-gradient {
-  background: linear-gradient(135deg, #D4AF37, #CEDCC5);
+  background: linear-gradient(135deg, #d4af37, #cedcc5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-glow {
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 
-               0 0 20px rgba(212, 175, 55, 0.4);
+  text-shadow:
+    0 0 10px rgba(212, 175, 55, 0.8),
+    0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .text-glow-intense {
-  text-shadow: 0 0 15px rgba(212, 175, 55, 1), 
-               0 0 30px rgba(212, 175, 55, 0.6), 
-               0 0 45px rgba(206, 220, 197, 0.3);
+  text-shadow:
+    0 0 15px rgba(212, 175, 55, 1),
+    0 0 30px rgba(212, 175, 55, 0.6),
+    0 0 45px rgba(206, 220, 197, 0.3);
 }
 
 /* ============================================================
@@ -378,7 +389,7 @@
    ============================================================ */
 
 .gradient-gold {
-  background: linear-gradient(135deg, #D4AF37, #F4D03F);
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
 }
 
 .gradient-dark {
@@ -386,7 +397,7 @@
 }
 
 .gradient-olive {
-  background: linear-gradient(135deg, #2E4632, #3D5741);
+  background: linear-gradient(135deg, #2e4632, #3d5741);
 }
 
 /* ============================================================
@@ -439,7 +450,7 @@
   position: relative;
   border: 2px solid transparent;
   background-clip: padding-box;
-  background-image: linear-gradient(135deg, #D4AF37, #CEDCC5);
+  background-image: linear-gradient(135deg, #d4af37, #cedcc5);
 }
 
 .outline-glow {
@@ -449,7 +460,7 @@
 }
 
 .outline-glow:hover {
-  outline-color: #D4AF37;
+  outline-color: #d4af37;
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
@@ -466,7 +477,9 @@
 }
 
 .transition-colors-smooth {
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
 }
 
 /* ============================================================
@@ -505,4 +518,68 @@ html {
   .hidden-on-desktop {
     display: none;
   }
+}
+
+/* ============================================================
+   ANIMAÇÕES DA SEÇÃO REFLEXÃO DIÁRIA
+   ============================================================ */
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(90deg, #D4AF37, #FFC700, #D4AF37);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.text-gradient-animated:hover {
+  animation-duration: 1.5s;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+}
+
+/* ============================================================
+   EFEITO 3D ISOMÉTRICO NO VERSÍCULO
+   ============================================================ */
+
+.text-gradient-animated-3d {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFC700 50%, #D4AF37 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift3D 4s ease-in-out infinite;
+
+  /* Efeito 3D com múltiplas sombras */
+  text-shadow:
+    1px 1px 0 rgba(212, 175, 55, 0.3),
+    2px 2px 0 rgba(212, 175, 55, 0.25),
+    3px 3px 0 rgba(212, 175, 55, 0.2),
+    4px 4px 0 rgba(212, 175, 55, 0.15),
+    5px 5px 0 rgba(212, 175, 55, 0.1),
+    6px 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+@keyframes gradientShift3D {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hover intensifica */
+.text-gradient-animated-3d:hover {
+  animation-duration: 2s;
+  filter: brightness(1.2) drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
 }
