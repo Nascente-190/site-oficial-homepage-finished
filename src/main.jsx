@@ -1,11 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import './styles/animations.css'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+// Importações de estilo — ordem correta e segura
+import './index.css'
+import './styles/animations.css' // Adição: ativa animações globais sem impacto visual
+
+// Renderização principal (sem alterações)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
     <App />
-  </StrictMode>,
+  </React.StrictMode>,
 )

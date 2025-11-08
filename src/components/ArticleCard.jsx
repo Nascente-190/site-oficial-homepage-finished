@@ -14,7 +14,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
   return (
     <>
       <style>{`
-        /* CARD BASE (mantido) */
+        /* CARD BASE */
         .article-card {
           backdrop-filter: blur(20px) !important;
           background: rgba(0, 0, 0, 0.3) !important;
@@ -29,7 +29,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           --mouse-y: 50%;
         }
 
-        /* SPOTLIGHT (mantido) */
+        /* SPOTLIGHT */
         .article-spotlight {
           position: absolute;
           top: var(--mouse-y); 
@@ -48,9 +48,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           opacity: 1 !important;
         }
 
-        /* === NOVIDADE: LAYOUT VERTICAL === */
-        
-        /* POST PRINCIPAL - Card Vertical Grande */
+        /* POST PRINCIPAL */
         .article-card.is-main {
           max-width: 700px !important;
           margin: 0 auto !important;
@@ -58,31 +56,29 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           flex-direction: column !important;
           padding: 0 !important;
         }
-        
-        /* Imagem do Post Principal - Topo do Card */
+
         .main-image-top {
           width: 100%;
           height: 400px;
           object-fit: cover;
           display: block;
         }
-        
-        /* Conteúdo Principal */
+
         .article-card.is-main .article-content {
           padding: 2.5rem !important;
         }
-        
-        /* POSTS SECUNDÁRIOS - Cards Verticais Menores */
+
+        /* POSTS SECUNDÁRIOS */
         .article-card:not(.is-main) {
-          max-width: 100%;
+          max-width: 850px;              /* ✅ corrigido */
+          margin: 0 auto !important;     /* ✅ corrigido */
           display: flex;
           flex-direction: column;
           padding: 0 !important;
           height: auto;
           min-height: 420px;
         }
-        
-        /* Miniatura Secundária - Topo do Card */
+
         .secondary-image-top {
           width: 100%;
           height: 200px;
@@ -90,30 +86,26 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           display: block;
           border-bottom: 2px solid rgba(212, 175, 55, 0.3);
         }
-        
-        /* Conteúdo Secundário */
+
         .article-card:not(.is-main) .article-content {
           padding: 2rem !important;
           flex: 1;
           display: flex;
           flex-direction: column;
         }
-        
-        /* === EFEITO DE EXPANSÃO AO HOVER === */
+
+        /* EFEITO HOVER */
         .article-card:hover {
           border-color: rgba(212, 175, 55, 0.7) !important;
           transform: translateY(-12px) scale(1.02) !important;
           box-shadow: 0 25px 60px rgba(212, 175, 55, 0.25) !important;
         }
-        
-        /* Expande conteúdo ao hover (altura cresce) */
+
         .article-card:not(.is-main):hover {
           min-height: 480px !important;
         }
-        
-        /* === FIM DA NOVIDADE === */
 
-        /* TIPOGRAFIA (mantido) */
+        /* TIPOGRAFIA */
         .article-title-main {
           font-family: 'Playfair Display', serif !important;
           font-size: 2rem !important; 
@@ -130,7 +122,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           margin-bottom: 1rem !important; 
         }
 
-        /* META INFO (mantido) */
+        /* META INFO */
         .article-meta {
           display: flex;
           align-items: center;
@@ -153,7 +145,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           border-radius: 50%;
         }
 
-        /* TEXTO (mantido) */
+        /* TEXTO */
         .article-text {
           font-family: 'Inter', sans-serif !important;
           flex-grow: 1;
@@ -172,7 +164,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
           flex-grow: 1;
         }
 
-        /* FOOTER (mantido) */
+        /* FOOTER */
         .article-footer {
           padding-top: 1.5rem; 
           border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
@@ -215,6 +207,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
             }
             
             .article-card:not(.is-main) {
+                max-width: 100% !important;
                 min-height: 380px;
             }
             
@@ -231,7 +224,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
       >
         <div className="article-spotlight"></div>
         
-        {/* IMAGEM NO TOPO (Principal ou Secundário) */}
+        {/* IMAGEM */}
         {post.imageUrl && (
           <img 
             src={post.imageUrl} 
@@ -256,9 +249,7 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
 
           <p className={isMain ? 'article-text' : 'article-text-secondary'}>
             {isMain ? post.description : post.excerpt}
-            {isMain && <br/>}
-            {isMain && <br/>}
-            {isMain && post.lorem}
+            {isMain && <><br/><br/>{post.lorem}</>}
           </p>
 
           {isMain && (
