@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // <-- useState não é mais necessário para o mouse, mas mantemos para o hover
+import React from 'react';
 
 // Dados das reflexões
 const data = [

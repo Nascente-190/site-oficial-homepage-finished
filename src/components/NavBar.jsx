@@ -1,83 +1,121 @@
-import React from 'react'; // Import React para usar o Fragmento <>
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+
+/**
+ * NavBar.jsx
+ * Versão refinada e funcional com React Router:
+ * - Usa <Link> para navegação sem reload
+ * - Mantém o efeito “palavra-lâmpada” dourada
+ * - Responsiva e independente
+ */
+
+const links = [
+  { to: "/", label: "Início" },
+  { to: "/caminho-das-escrituras", label: "Caminho das Escrituras" },
+  { to: "/escadaria-do-conhecimento", label: "Escadaria do Conhecimento" },
+  { to: "/devocional-diaria", label: "Devocional Diária" },
+  { to: "/temas-da-vida", label: "Temas da Vida" },
+  { to: "/contato", label: "Contato" },
+];
 
 export default function NavBar() {
-  const navLinks = [
-    { title: "INÍCIO", href: "#" },
-    { title: "DEVOCIONAL", href: "#devocional" },
-    { title: "ESTAÇÃO TEOLÓGICA", href: "#estacao" },
-    { title: "CONTATO", href: "#contato" }
-  ];
+  const location = useLocation();
+  const path = location.pathname || "/";
 
   return (
-    <>
-      <style>
-        {`
-          /* 1. Estilos de cor e sombra (CORRIGIDO) */
-          nav a, 
-          nav a:visited, 
-          nav a:active {
-            color: white !important;
-            text-shadow: 0 0 10px #D4AF37, 0 0 2px #fffba3 !important;
-            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-          }
-
-          nav a:hover, 
-          nav a:focus {
-            color: #D4AF37 !important;
-            text-shadow: 0 0 18px white, 0 0 8px #D4AF37 !important;
-            transform: translateY(-3px);
-          }
-
-          /* 2. NOVO: Força o espaçamento entre os itens do menu */
-          nav ul li {
-            /* Adiciona margens horizontais (lados) e verticais (cima/baixo) */
-            /* 1.5rem = 24px (horizontal) | 0.25rem = 4px (vertical) */
-            margin: 0.25rem 1.5rem !important; 
-          }
-        `}
-      </style>
-
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/30 border-b border-[#D4AF37]/20">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          
-          {/* 3. HTML Limpo: Removemos as classes de espaçamento (gap, mx) 
-                que não estavam funcionando. */}
-          <ul className="flex flex-wrap justify-center items-center">
-            
-            {navLinks.map((link, idx) => (
-              // 4. A classe de margem foi removida daqui
-              <li key={idx}>
-                <a
-                  href={link.href}
-                  className="group relative text-base font-semibold tracking-wide
-                    px-6 py-2 rounded-md transition-all duration-300 ease-in-out
-                    hover:shadow-[0_0_20px_rgba(212,175,55,0.9),0_0_20px_rgba(255,255,255,0.6)]"
+    <nav aria-label="Main navigation" className="w-full">
+      <div className="max-w-6xl mx-auto px-4">
+        <ul
+          className="flex flex-wrap justify-center items-center gap-8 py-2"
+          style={{ margin: 0, padding: 0, listStyle: "none", gap: "3.2rem" }}
+        >
+          {links.map((l) => {
+            const active = path === l.to || (l.to !== "/" && path.startsWith(l.to));
+            return (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  className={`nav-link ${active ? "active" : ""}`}
+                  style={{ textDecoration: "none" }}
                 >
-                  {link.title}
-                  {/* SUBINHADOD ANIMADO REMOVIDO! */}
-                </a>
+                  <span>{l.label}</span>
+                  <span aria-hidden="true" className="nav-underline" />
+                </Link>
               </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-    </>
+            );
+          })}
+        </ul>
+      </div>
+
+      <style>{`
+        .nav-link {
+          --gold: #D4AF37;
+          display: inline-block;
+          position: relative;
+          color: var(--gold);
+          font-family: 'Playfair Display', serif;
+          font-weight: 700;
+          letter-spacing: 0.6px;
+          padding: 6px 2px;
+          transition: all 220ms ease;
+          text-shadow: 0 0 6px rgba(212,175,55,0.25);
+        }
+
+        /* --- CÓDIGO DO EFEITO DE FOCO DE LUZ (HOVER/ACTIVE) --- */
+        .nav-link:hover,
+        .nav-link:focus {
+          color: #fff;
+          transform: translateY(-3px) scale(1.05);
+          text-shadow:
+            0 0 4px #fff,
+            0 0 16px var(--gold),
+            0 0 28px rgba(212,175,55,0.95);
+        }
+
+        .nav-link.active {
+          color: #fff;
+          text-shadow:
+            0 0 5px #fff,
+            0 0 20px var(--gold),
+            0 0 32px rgba(212,175,55,0.95);
+        }
+
+        .nav-link .nav-underline {
+          content: "";
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%) scaleX(0);
+          bottom: -6px;
+          height: 2px;
+          width: 70%;
+          background: linear-gradient(90deg, rgba(212,175,55,1), rgba(255,255,255,0.6));
+          border-radius: 2px;
+          transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms;
+          opacity: 0.85;
+        }
+
+        .nav-link:hover .nav-underline,
+        .nav-link:focus .nav-underline,
+        .nav-link.active .nav-underline {
+          transform: translateX(-50%) scaleX(1);
+          opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+          .nav-link {
+            font-size: 0.95rem;
+            padding: 8px 4px;
+          }
+          ul { gap: 1.5rem !important; }
+        }
+
+        @media (max-width: 640px) {
+          .nav-link {
+            font-size: 0.9rem;
+          }
+          ul { gap: 0.8rem !important; }
+        }
+      `}</style>
+    </nav>
   );
 }
-
-// O código CSS abaixo (comentário) não estava em NavBar.jsx e foi mantido apenas como nota,
-// mas não interfere na execução atual.
-/*
-navBar.css - para testar se está carregando
-
-a {
-  color: gold !important;
-  transition: all 0.3s ease !important;
-}
-
-a:hover {
-  color: white !important;
-  text-shadow: 0 0 8px white !important;
-  transform: translateY(-3px);
-}
-*/

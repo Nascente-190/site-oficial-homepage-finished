@@ -3,7 +3,9 @@
 import React from 'react';
 
 export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
-  
+
+  if (!post) return null;
+
   const handleMouseMove = (e) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -254,9 +256,13 @@ export const ArticleCard = ({ post, isMain = false, delay = 0.1 }) => {
 
           {isMain && (
             <div className="article-footer">
-              <button className="article-button">
+              <a
+                href={`#post-${post.id || post.slug}`}
+                className="article-button"
+                style={{ textDecoration: 'none', display: 'inline-block' }}
+              >
                 Ler Mais
-              </button>
+              </a>
               <span className="article-meta" style={{border: 'none', padding: 0, margin: 0}}>
                 <span>{post.readTime}</span>
               </span>
